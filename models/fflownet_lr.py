@@ -249,7 +249,7 @@ class FastFlowNet(nn.Module):
         return flow
 
 
-def fflownet(data=None):
+def fflownet_lr(data=None):
     model = FastFlowNet()
     if data is not None:
         model.load_state_dict(data["state_dict"])
