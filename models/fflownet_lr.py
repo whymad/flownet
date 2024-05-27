@@ -119,8 +119,8 @@ class FastFlowNet(nn.Module):
         return output
 
     def forward(self, x):
-        img1 = x[:, :3, :, :]
-        img2 = x[:, 3:6, :, :]
+        img1 = F.interpolate(x[:, :3, :, :], scale_factor=2, mode='lanczos')
+        img2 = F.interpolate(x[:, 3:6, :, :], scale_factor=2, mode='lanczos')
         f11 = self.pconv1_2(self.pconv1_1(img1))
         f21 = self.pconv1_2(self.pconv1_1(img2))
         f12 = self.pconv2_3(self.pconv2_2(self.pconv2_1(f11)))
